@@ -1,44 +1,27 @@
 #!/bin/sh
 
-# /bin/sh on Solaris is not a POSIX compatible shell, but /usr/bin/ksh is.
-if [ `uname -s` = 'SunOS' -a "${POSIX_SHELL}" != "true" ]; then
-    POSIX_SHELL="true"
-    export POSIX_SHELL
-    exec /usr/bin/ksh $0 $@
-fi
-unset POSIX_SHELL # clear it so if we invoke other scripts, they run as ksh as well
-
 MARIO_VSN="1.0.0"
 
-
-set -e
-
+# move the path th c_src
 if [ `basename $PWD` != "c_src" ]; then
-    # originally "pushd c_src" of bash
-    # but no need to use directory stack push here
     cd c_src
 fi
 
 BASEDIR="$PWD"
 
-# detecting gmake and if exists use it
-# if not use make
-# (code from github.com/tuncer/re2/c_src/build_deps.sh
-which gmake 1>/dev/null 2>/dev/null && MAKE=gmake
-MAKE=${MAKE:-make}
-
-# Changed "make" to $MAKE
-
 case "$1" in
     rm-deps)
+        rm -rf mario
         ;;
 
     clean)
-        # if [ -d leveldb ]; then
-        #     (cd leveldb && $MAKE clean)
-        # fi
         rm -rf ../priv/*
         rm -rf *.o
+        if [ -d mario ]; then
+            (cd mario && make clean)
+            rm -rf mario
+        fi
+
         ;;
 
     test)
@@ -48,11 +31,15 @@ case "$1" in
         export LDFLAGS="$LDFLAGS -L$BASEDIR/system/lib"
         export LD_LIBRARY_PATH="$BASEDIR/system/lib:$LD_LIBRARY_PATH"
 
-        (cd mario && $MAKE check)
+        (cd mario && make check)
 
         ;;
 
     get-deps)
+        if [ ! -d mario ]; then
+            git clone git@github.com:baotiao/Mario.git ./mario
+            (cd mario && git checkout $MARIO_VSN)
+        fi
         ;;
 
     *)
@@ -60,9 +47,12 @@ case "$1" in
         export CXXFLAGS="$CXXFLAGS -I $BASEDIR/mario/include"
         export LDFLAGS="$LDFLAGS -L$BASEDIR/mario/lib"
         export LD_LIBRARY_PATH="$BASEDIR/mario/lib:$LD_LIBRARY_PATH"
-        # make
 
-        # (cd mario && $MAKE)
+        if [ ! -d mario ]; then
+            git clone git@github.com:baotiao/Mario.git ./mario
+            (cd mario && git checkout $MARIO_VSN)
+        fi
+        (cd mario && make)
 
         ;;
 esac
