@@ -1,0 +1,9 @@
+{application, elog, [
+    {description, "Erlang log base on mario"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {applications, [kernel, stdlib]},
+    {env, [
+            {file, "log/czz.log"}
+        ]}
+]}.
