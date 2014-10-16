@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MARIO_VSN="m1.0.0"
+MARIO_VSN="m1.0.1"
 
 # move the path th c_src
 if [ `basename $PWD` != "c_src" ]; then

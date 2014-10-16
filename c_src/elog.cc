@@ -127,30 +127,8 @@ unload(ErlNifEnv* env, void* priv)
 static ERL_NIF_TERM
 open(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
-    // FileHandler *fh;
-    // mario::Mario *m;
-
-    // void *alloc_handle_ptr;
-    // alloc_handle_ptr = enif_alloc_resource(handle_type, sizeof(FileHandler));
-    // if (alloc_handle_ptr == NULL) {
-    //     return enif_make_badarg(env);
-    // }
-
-    // void *alloc_mario_ptr;
-    // alloc_mario_ptr = enif_alloc_resource(mario_type, sizeof(mario::Mario));
-    // if (alloc_mario_ptr == NULL) {
-    //     return enif_make_badarg(env);
-    // }
-
-    // fh = new (alloc_handle_ptr)FileHandler(1024 * 1024 * 20);
-    // m = new (alloc_mario_ptr) mario::Mario(1, fh);
-
-    // ERL_NIF_TERM rfh = enif_make_resource(env, fh);
-    // ERL_NIF_TERM result = enif_make_resource(env, m);
-    // enif_release_resource(m);
 
     return enif_make_int(env, 10);
-    // return log_item::ATOM_OK;
 }
 
 static ERL_NIF_TERM
