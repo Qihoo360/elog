@@ -49,7 +49,7 @@ case "$1" in
         export LD_LIBRARY_PATH="$BASEDIR/mario/lib:$LD_LIBRARY_PATH"
 
         if [ ! -d mario ]; then
-            git clone git@github.com:baotiao/Mario.git ./mario
+            git clone https://github.com/baotiao/Mario.git ./mario
             (cd mario && git checkout $MARIO_VSN)
         fi
         (cd mario && make)
