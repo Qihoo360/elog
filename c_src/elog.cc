@@ -6,13 +6,6 @@
 
 #include "filehandler.h"
 #include "levelhandler.h"
-// static uint64_t gettid() {
-//     pthread_t tid = pthread_self();
-//     uint64_t thread_id = 0;
-//     memcpy(&thread_id, &tid, std::min(sizeof(thread_id), sizeof(tid)));
-//     return thread_id;
-// }
-
 
 // Atoms (initialized in on_load)
 namespace log_item 
@@ -123,14 +116,6 @@ unload(ErlNifEnv* env, void* priv)
     return;
 }
 
-
-static ERL_NIF_TERM
-open(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
-{
-
-    return enif_make_int(env, 10);
-}
-
 static ERL_NIF_TERM
 put(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
@@ -179,7 +164,6 @@ level_put(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 }
 
 static ErlNifFunc nif_funcs[] = {
-    {"open", 1, open},
     {"put", 1, put},
     {"level_put", 2, level_put}
 };

@@ -1,9 +1,10 @@
-{application, elog, [
+{application, elog,
+[
     {description, "Erlang log base on mario"},
     {vsn, "1.0.0"},
     {registered, []},
     {applications, [kernel, stdlib]},
     {env, [
-            {file, "log/czz.log"}
+            {logname, "logname"}
         ]}
 ]}.

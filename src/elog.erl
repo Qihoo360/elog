@@ -1,16 +1,11 @@
 -module(elog).
 
--export([open/1, put/1, level_put/2]).
+-export([put/1, level_put/2]).
 -on_load(init/0).
 
 -define(APPNAME, elog).
 -define(LIBNAME, elog).
 
-% -opaque db_ref() :: binary().
-
-% -spec open(string()) -> {ok} | {error}.
-open(_Name) ->
-    not_loaded(?LINE).
 
 -spec put(string()) -> {ok} | {error}.
 put(_Arg) ->
@@ -32,8 +27,9 @@ init() ->
         Dir ->
             filename:join(Dir, ?LIBNAME)
     end,
+    Pre = application:get_env(elog, logname, "elog"),
     erlang:load_nif(SoName, [
-            {filename, "log/bada."}  % add the file name
+            {filename, "log/" ++ Pre ++ "."}  % add the file name
         ]).
 
 not_loaded(Line) ->
