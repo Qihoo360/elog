@@ -18,6 +18,8 @@ case "$1" in
         rm -rf ../priv/*
         rm -rf *.o
         rm -rf mario
+        rm -rf ../log/*
+        rm -rf ../log
         # if [ -d mario ]; then
         #     (cd mario && make clean)
         #     (cd .. && rm -rf mario)
@@ -54,6 +56,7 @@ case "$1" in
             (cd mario && git checkout $MARIO_VSN)
         fi
         (cd mario && make)
+        mkdir -p ../log
 
         ;;
 esac
