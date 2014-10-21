@@ -15,7 +15,8 @@ case "$1" in
         ;;
 
     clean)
-        rm -rf ../priv/*
+        rm -rf ../priv/
+        rm -rf ../ebin/
         rm -rf *.o
         rm -rf mario
         rm -rf ../log/*
