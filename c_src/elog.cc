@@ -1,11 +1,11 @@
+#include "stdio.h"
+#include "erl_nif.h"
+#include "filehandler.h"
+#include "elog.h"
+#include "levelhandler.h"
+
 #include <iostream>
 #include <string>
-#include "stdio.h"
-
-#include "erl_nif.h"
-
-#include "filehandler.h"
-#include "levelhandler.h"
 
 // Atoms (initialized in on_load)
 namespace log_item 
@@ -140,7 +140,7 @@ put(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 static ERL_NIF_TERM
 level_put(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
-    char item[1024];
+    char item[MAX_LOG_LENGTH];
     int level;
 
     mario::Mario& m = *static_cast<mario::Mario *>(enif_priv_data(env));
