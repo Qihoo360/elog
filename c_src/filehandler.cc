@@ -11,7 +11,8 @@ FileHandler::~FileHandler()
     delete(trace_log_);
 }
 
-void FileHandler::processMsg(const std::string& item)
+bool FileHandler::processMsg(const std::string& item)
 {
     Log(trace_log_, "%s", item.c_str());
+    return true;
 }

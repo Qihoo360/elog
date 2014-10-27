@@ -20,7 +20,7 @@ LevelHandler::~LevelHandler()
     delete(fatal_log_);
 }
 
-void LevelHandler::processMsg(const std::string& item)
+bool LevelHandler::processMsg(const std::string& item)
 {
     const char *p = item.c_str();
     int level = 0;
@@ -47,4 +47,6 @@ void LevelHandler::processMsg(const std::string& item)
     default:
         break;
     }
+
+    return true;
 }

@@ -17,7 +17,7 @@ class FileHandler : public mario::Consumer::Handler {
     public:
         FileHandler(size_t kMaxLogFileSize, const char* filename, const char* log_path); 
         ~FileHandler();
-        virtual void processMsg(const std::string& item);
+        virtual bool processMsg(const std::string& item);
 
     private:
         AutoRollLogger *trace_log_;

@@ -11,7 +11,7 @@ class LevelHandler : public mario::Consumer::Handler {
     public:
         LevelHandler(size_t kMaxLogFileSize, const char* filename, const char* log_path); 
         ~LevelHandler();
-        virtual void processMsg(const std::string& item);
+        virtual bool processMsg(const std::string& item);
 
     private:
         enum Level {
