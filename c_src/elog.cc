@@ -120,7 +120,7 @@ static ERL_NIF_TERM
 put(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
 
-    char item[1024];
+    char item[102400];
 
     mario::Mario& m = *static_cast<mario::Mario *>(enif_priv_data(env));
 
