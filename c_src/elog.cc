@@ -129,7 +129,7 @@ put(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
     }
 
     mario::Status s;
-    s = m.Put(item);
+    s = m.Put(std::string(item, sizeof(int) + strlen(item + sizeof(int))));
     if (s.ok()) {
         return log_item::ATOM_OK;
     } else {
@@ -155,7 +155,7 @@ level_put(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
     }
 
     mario::Status s;
-    s = m.Put(std::string(item, sizeof(item)));
+    s = m.Put(std::string(item, sizeof(int) + strlen(item + sizeof(int))));
     if (s.ok()) {
         return log_item::ATOM_OK;
     } else {
