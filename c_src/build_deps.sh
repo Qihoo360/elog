@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MARIO_VSN="m1.0.6"
+MARIO_VSN="1.2.0"
 
 # move the path th c_src
 if [ `basename $PWD` != "c_src" ]; then
@@ -52,7 +52,7 @@ case "$1" in
             git clone git://github.com/Qihoo360/Mario.git ./mario
             (cd mario && git checkout $MARIO_VSN)
         fi
-        (cd mario && make)
+        (cd mario && make ENGINE=memory)
         mkdir -p ../log
 
         ;;

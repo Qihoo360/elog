@@ -47,6 +47,7 @@ gen_str(N, Str) ->
 
 
 main(_) ->
+    io:format("line number ~p~n", [?LINE]),
     {ok, D} = file:open("/tmp/erlang", [append]),
     % io:format("elog:put result ~p~n", [elog_backend:warn("put ~s ~B", ["heihei", 40])]),
     % io:format("elog:put result ~p~n", [elog_backend:error("heihei", [])]),
